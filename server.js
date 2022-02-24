@@ -1,4 +1,5 @@
 const { Client } = require('@notionhq/client')
+const { Console } = require('console')
 const express = require('express')
 
 require('dotenv').config()
@@ -19,7 +20,6 @@ const notion = new Client({
 
 // create a GET route
 app.get('/notion_data', async (req, res) => {
-  console.log('endpoint hit')
   if (!NOTION_DB_ID || !NOTION_TOKEN) {
     console.log(process.env)
     throw Error('Must define NOTION_TOKEN and NOTION_DATABASE_ID in env')
@@ -47,6 +47,8 @@ app.get('/notion_data', async (req, res) => {
       formattedList.push({ id, question, answer })
     }
   })
+
+  console.log(`/notion_data fetched, total items: ${formattedList.length}`)
 
   res.send({ express: formattedList })
 })
