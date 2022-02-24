@@ -13,7 +13,7 @@ A React based app to help you study with a set of answers & questions from a Not
 2. Create a database page with 2 columns. The first column (title column) should be labelled as `question` and the second column should be labelled as `answer` and of type "text".
 3. Add your set of questions and answers in this database page.
 4. Then follow the steps from the Notion getting started guide to get a Notion integration token and your database ID you just created: https://developers.notion.com/docs/getting-started
-5. Then create a .env file in /server and add the following keys:
+5. Then create a .env file and add the following keys:
 
 ```
 NOTION_TOKEN=secret_yourToken
