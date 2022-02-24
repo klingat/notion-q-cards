@@ -15,8 +15,8 @@ A React based app to help you study with a set of answers & questions from a Not
 5. Then create a .env file in /server and add the following keys:
 
 ```
-NOTION_TOKEN=<your_secret_from_getting_started_guide>
-NOTION_DATABASE_ID=<database_id_from_getting_started_guide>
+NOTION_TOKEN=secret_yourToken
+NOTION_DATABASE_ID=yourDatabaseID
 ```
 
 ## Available Scripts
