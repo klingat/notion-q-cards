@@ -1,5 +1,4 @@
 const { Client } = require('@notionhq/client')
-const { Console } = require('console')
 const express = require('express')
 
 require('dotenv').config()
