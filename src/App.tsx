@@ -1,4 +1,14 @@
 import { useState, useEffect } from 'react'
+import { Card } from './components/Card'
+import styled from 'styled-components'
+
+const CardWrapper = styled.main`
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+`
 
 interface QuestionAnswerSet {
   id: string
@@ -30,20 +40,13 @@ export const App = () => {
     setIsLoading(false)
   }, [])
 
-  const renderQuestions = () => {
-    return (
-      <ul>
-        {data.map(({ id, question, answer }: QuestionAnswerSet) => {
-          return (
-            <li key={id}>
-              {question}
-              <small>{answer}</small>
-            </li>
-          )
-        })}
-      </ul>
-    )
-  }
+  const renderQuestions = () => (
+    <CardWrapper>
+      {data.map(({ id, question, answer }: QuestionAnswerSet) => {
+        return <Card key={id} frontText={question} backText={answer} />
+      })}
+    </CardWrapper>
+  )
 
   return <div>{!isLoading && renderQuestions()}</div>
 }

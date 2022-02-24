@@ -11,6 +11,7 @@
     "@types/node": "^16.11.25",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "@types/styled-components": "^5.1.23",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "react": "^17.0.2",
