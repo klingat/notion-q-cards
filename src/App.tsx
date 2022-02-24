@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface QuestionAnswerSet {
+  id: string
+  question: string
+  answer: string
 }
 
-export default App;
+const fetchData = async () => {
+  const response = await fetch('/notion_data')
+  const body = await response.json()
+
+  if (response.status !== 200) {
+    throw Error(body.message)
+  }
+  return body
+}
+
+export const App = () => {
+  const [data, setData] = useState<QuestionAnswerSet[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  console.log(data)
+
+  useEffect(() => {
+    setIsLoading(true)
+    fetchData()
+      .then((res) => setData(res.express))
+      .catch((err) => console.log(err))
+    setIsLoading(false)
+  }, [])
+
+  const renderQuestions = () => {
+    return (
+      <ul>
+        {data.map(({ id, question, answer }: QuestionAnswerSet) => {
+          return (
+            <li key={id}>
+              {question}
+              <small>{answer}</small>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
+  return <div>{!isLoading && renderQuestions()}</div>
+}
