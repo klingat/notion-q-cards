@@ -22,7 +22,7 @@ NOTION_DATABASE_ID=yourDatabaseID
 
 ## Available Scripts
 
-In the project directory, you can run:
+### `npm install` 👈 to install dependencies
 
 ### `npm start` 👈 to run the client
 
