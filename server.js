@@ -10,7 +10,7 @@ const app = express()
 
 const port = process.env.PORT || 8000
 // This displays message that the server running and listening to specified port
-app.listen(port, () => console.log(`Server listening on port ${port}`))
+app.listen(port, () => console.log(`Server listening on port ${port}...`))
 
 // initializing the Notion client
 const notion = new Client({
@@ -35,15 +35,19 @@ app.get('/notion_data', async (req, res) => {
     const questionCell = row.properties.question
     const answerCell = row.properties.answer
 
-    const isQuestion = questionCell.type === 'title'
-    const isAnswer = answerCell.type === 'rich_text'
+    const validQuestionSet =
+      questionCell.type === 'title' && answerCell.type === 'rich_text'
 
     // only return valid rows that are question/answers
-    if (isQuestion && isAnswer) {
-      const question = questionCell.title[0].plain_text
-      const answer = answerCell.rich_text[0].plain_text
+    if (validQuestionSet) {
+      const question =
+        (questionCell.title[0] && questionCell.title[0].plain_text) || ''
+      const answer =
+        (answerCell.rich_text[0] && answerCell.rich_text[0].plain_text) || ''
 
-      formattedList.push({ id, question, answer })
+      const isEmptyRow = !Boolean(question) && !Boolean(answer)
+
+      !isEmptyRow && formattedList.push({ id, question, answer })
     }
   })
 

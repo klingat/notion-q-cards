@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import { Card } from './components/Card'
 import styled from 'styled-components'
 
-const CardWrapper = styled.main`
-  padding: 30px 0;
+const Container = styled.main`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   font-family: 'Poppins', sans-serif;
+  padding: 30px 0;
+`
+const CardWrapper = styled.section`
   display: grid;
   gap: 20px;
   @media (max-width: 550px) {
@@ -41,7 +43,7 @@ const fetchData = async () => {
 
 export const App = () => {
   const [data, setData] = useState<QuestionAnswerSet[]>([])
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   console.log(data)
 
@@ -53,13 +55,19 @@ export const App = () => {
     setIsLoading(false)
   }, [])
 
-  const renderQuestions = () => (
-    <CardWrapper>
-      {data.map(({ id, question, answer }: QuestionAnswerSet) => {
-        return <Card key={id} frontText={question} backText={answer} />
-      })}
-    </CardWrapper>
-  )
+  const renderQuestions = () => {
+    if (data.length === 0) {
+      return 'Add questions and answers to your Notion page!'
+    }
 
-  return <div>{!isLoading && renderQuestions()}</div>
+    return (
+      <CardWrapper>
+        {data.map(({ id, question, answer }: QuestionAnswerSet) => {
+          return <Card key={id} frontText={question} backText={answer} />
+        })}
+      </CardWrapper>
+    )
+  }
+
+  return <Container>{isLoading ? 'Loading...' : renderQuestions()}</Container>
 }
