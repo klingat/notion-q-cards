@@ -4,7 +4,8 @@
 
 # ✏️ Notion Database Q-Cards
 
-A React based app to help you study with a set of answers & questions from a Notion database, presented in Q-card format.
+A React based app to help you study with a set of answers & questions from a Notion database, presented in Q-card format. Click on each card to reveal the answer.
+![](https://user-images.githubusercontent.com/19555303/155453032-af31700a-b94b-46f5-8574-1ff1302ea47c.png)
 
 ## Setup
 
