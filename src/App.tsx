@@ -3,11 +3,24 @@ import { Card } from './components/Card'
 import styled from 'styled-components'
 
 const CardWrapper = styled.main`
+  padding: 30px 0;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   font-family: 'Poppins', sans-serif;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 20px;
+  @media (max-width: 550px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 550px) and (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 `
 
 interface QuestionAnswerSet {

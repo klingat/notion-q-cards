@@ -12,13 +12,13 @@ interface CardWrapperProps {
 }
 
 const CardWrapper = styled.div`
-  min-height: 200px;
-  height: auto;
-  padding: 20px;
+  height: 200px;
+  overflow: auto;
+  padding: 30px;
   background: ${(props: CardWrapperProps) =>
     props.showBack ? 'white' : 'black'};
   border: 1px solid grey;
-  border-radius: 3px;
+  border-radius: 8px;
   color: ${(props: CardWrapperProps) => (props.showBack ? 'black' : 'white')};
   font-size: 20px;
 `
